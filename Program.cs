@@ -6,7 +6,20 @@ namespace GroupDMinefieldMidterm
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            GameBoard board = new GameBoard("Beginner");
+
+            int sum = 0;
+            for (int i = 0; i < board.BoardRows; i++)
+            {
+                for (int j = 0; j < board.BoardColumns; j++)
+                {
+                    if (board.Board[i, j] == GameValues.Mine)
+                    {
+                        sum++;
+                    }
+                }
+            }
+            Console.WriteLine(sum);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace GroupDMinefieldMidterm
@@ -11,6 +12,14 @@ namespace GroupDMinefieldMidterm
         public int BoardColumns { get; set; }
         public int NumberOfMines { get; set; }
         public GameValues[,] Board { get; set; }
+
+
+
+        public GameBoard(string difficulty)
+        {
+            GenerateBoard(difficulty);
+            PlaceMines();
+        }
         private void GenerateBoard(string difficulty)
         {
             switch (difficulty)
@@ -51,25 +60,38 @@ namespace GroupDMinefieldMidterm
             {
                 var row = random.Next(0, BoardRows);
                 var column = random.Next(0, BoardColumns);
-                Board[row,column] = GameValues.Mine;
-            }
+                Board[row, column] = GameValues.Mine;
+                PlaceNumber(row, column);
+                Console.WriteLine(i);
+            }            
         }
 
         private void PlaceNumber(int row, int column)
         {
-            if(row < 0 || column < 0 || row > BoardRows || column > BoardColumns)
-                
-            TopLeft = row-1, column -1
-            TopMiddle = row -1, column
-            TopRight = row - 1, column +1
-            MiddleRight = row, column +1
-            BottomRight = row +1, column +1
-            BottomMiddle = row +1, column
-            BottomLeft = row -1, column -1
-            MiddleLeft = row, column -1
 
+            List<Point> surroundingCells = new List<Point> {
+            new Point(row - 1, column - 1),
+            new Point(row - 1, column),
+            new Point(row - 1, column + 1),
+            new Point(row, column + 1),
+            new Point(row + 1, column + 1),
+            new Point(row + 1, column),
+            new Point(row + 1, column - 1),
+            new Point(row , column - 1),
+            };
+
+            foreach (Point point in surroundingCells)
+            {
+                if (!((point.X < 0) || (point.Y < 0) || (point.X > BoardRows - 1) || (point.Y > BoardColumns - 1)))
+                {
+                    int currentValue = (int)Board[point.X, point.Y];
+                    if (currentValue != 9)
+                    {
+                        currentValue += 1;
+                    }
+                    Board[point.X, point.Y] = (GameValues)currentValue;
+                }
+            }
         }
-
-
     }
 }

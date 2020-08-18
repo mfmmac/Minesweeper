@@ -16,6 +16,5 @@ namespace GroupDMinefieldMidterm
         Seven,
         Eight,
         Mine,
-
     }
 }
