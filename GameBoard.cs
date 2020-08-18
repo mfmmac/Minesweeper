@@ -8,12 +8,11 @@ namespace GroupDMinefieldMidterm
 {
     public class GameBoard
     {
+        public List<Point> MineCoordinates { get; set; }
         public int BoardRows { get; set; }
         public int BoardColumns { get; set; }
         public int NumberOfMines { get; set; }
-        public GameValues[,] Board { get; set; }
-
-
+        public Cell[,] Board { get; set; }
 
         public GameBoard(string difficulty)
         {
@@ -43,12 +42,12 @@ namespace GroupDMinefieldMidterm
                     break;
             }
 
-            Board = new GameValues[BoardRows, BoardColumns];
+            Board = new Cell[BoardRows, BoardColumns];
             for (int i = 0; i < BoardRows; i++)
             {
                 for (int j = 0; j < BoardColumns; j++)
                 {
-                    Board[i, j] = GameValues.Empty;
+                    Board[i, j].CellValue = GameValues.Empty;
                 }
             }
         }
@@ -60,15 +59,32 @@ namespace GroupDMinefieldMidterm
             {
                 var row = random.Next(0, BoardRows);
                 var column = random.Next(0, BoardColumns);
-                Board[row, column] = GameValues.Mine;
+                Board[row, column].CellValue = GameValues.Mine;
                 PlaceNumber(row, column);
+                MineCoordinates.Add(new Point(row, column));
                 Console.WriteLine(i);
-            }            
+            }
         }
 
         private void PlaceNumber(int row, int column)
         {
+            var surroundingCells = GetSurroundingCells(row, column);
 
+            foreach (Point point in surroundingCells)
+            {
+                if (!((point.X < 0) || (point.Y < 0) || (point.X > BoardRows - 1) || (point.Y > BoardColumns - 1)))
+                {
+                    int currentValue = (int)Board[point.X, point.Y].CellValue;
+                    if (currentValue != 9)
+                    {
+                        currentValue += 1;
+                    }
+                    Board[point.X, point.Y].CellValue = (GameValues)currentValue;
+                }
+            }
+        }
+        private List<Point> GetSurroundingCells(int row, int column)
+        {
             List<Point> surroundingCells = new List<Point> {
             new Point(row - 1, column - 1),
             new Point(row - 1, column),
@@ -79,18 +95,15 @@ namespace GroupDMinefieldMidterm
             new Point(row + 1, column - 1),
             new Point(row , column - 1),
             };
+            return surroundingCells;
+        }
+        private void CheckCell(Point point)
+        {
+            var cellValue = Board[point.X, point.Y].CellValue;
 
-            foreach (Point point in surroundingCells)
+            switch (cellValue)
             {
-                if (!((point.X < 0) || (point.Y < 0) || (point.X > BoardRows - 1) || (point.Y > BoardColumns - 1)))
-                {
-                    int currentValue = (int)Board[point.X, point.Y];
-                    if (currentValue != 9)
-                    {
-                        currentValue += 1;
-                    }
-                    Board[point.X, point.Y] = (GameValues)currentValue;
-                }
+
             }
         }
     }
