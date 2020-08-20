@@ -9,6 +9,8 @@ namespace GroupDMinefieldMidterm
             GameBoard board = new GameBoard("Expert");
             var display = new Display();
             display.DisplayBoard(board);
+
+            display.GameEndScreen(false);
         }
     }
 }

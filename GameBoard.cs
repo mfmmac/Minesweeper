@@ -52,6 +52,7 @@ namespace GroupDMinefieldMidterm
                     var boardCell = new Cell();
                     Board[i, j] = boardCell;
                     Board[i, j].CellValue = GameValues.Empty;
+                    Board[i, j].Revealed = true;
                 }
             }
         }
@@ -63,7 +64,7 @@ namespace GroupDMinefieldMidterm
             {
                 var row = random.Next(0, BoardRows);
                 var column = random.Next(0, BoardColumns);
-                Board[row, column].CellValue = GameValues.Mine;
+                Board[row, column].CellValue = GameValues.Mine;               
                 PlaceNumber(row, column);
                 MineCoordinates.Add(new Point(row, column));
              }
