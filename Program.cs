@@ -13,7 +13,7 @@ namespace GroupDMinefieldMidterm
             {
                 for (int j = 0; j < board.BoardColumns; j++)
                 {
-                    if (board.Board[i, j] == GameValues.Mine)
+                    if (board.Board[i, j].CellValue == GameValues.Mine)
                     {
                         sum++;
                     }
