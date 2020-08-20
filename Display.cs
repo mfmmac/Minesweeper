@@ -8,6 +8,7 @@ namespace GroupDMinefieldMidterm
     {
         public void DisplayBoard(GameBoard gameBoard)
         {
+            Console.WriteLine();
             Console.Write("  ");
             for (int i = 0; i < gameBoard.BoardColumns; i++)
             {

@@ -51,8 +51,7 @@ namespace GroupDMinefieldMidterm
                 {
                     var boardCell = new Cell();
                     Board[i, j] = boardCell;
-                    Board[i, j].CellValue = GameValues.Empty;
-                    Board[i, j].Revealed = true;
+                    Board[i, j].CellValue = GameValues.Empty;                    
                 }
             }
         }
@@ -119,21 +118,30 @@ namespace GroupDMinefieldMidterm
                 Board[mine.X, mine.Y].Revealed = true;
             }
         }
-        private void CheckCell(Point point)
+        public void CheckCell(Point point)
         {
             var cellValue = Board[point.X, point.Y].CellValue;
 
-            switch (cellValue)
+            if (!Board[point.X, point.Y].Revealed)
             {
-                case GameValues.Empty:
-                    break;
-                case GameValues.Mine:
-                    RevealMines();
-                    //End game
-                    break;
-                default:
-                    Board[point.X, point.Y].Revealed = true;
-                    break;
+                switch (cellValue)
+                {
+                    case GameValues.Empty:
+                        Board[point.X, point.Y].Revealed = true;
+                        List<Point> surroundingCells = GetSurroundingCells(point.X, point.Y);
+                        foreach (Point cell in surroundingCells)
+                        {
+                            CheckCell(cell);
+                        }
+                        break;
+                    case GameValues.Mine:
+                        RevealMines();
+                        //End game
+                        break;
+                    default:
+                        Board[point.X, point.Y].Revealed = true;
+                        break;
+                }
             }
         }
     }
