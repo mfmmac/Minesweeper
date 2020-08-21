@@ -12,9 +12,7 @@ namespace GroupDMinefieldMidterm
             while(!minesweeper.GameOver)
             {
                 minesweeper.GetUserSelection();
-                //if CheckCell.GameValues = Minesweeper;
             }
-           
         }
     }
 }

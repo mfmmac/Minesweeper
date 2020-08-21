@@ -9,15 +9,18 @@ namespace GroupDMinefieldMidterm
 {
     public class GameBoard
     {
+        public Boolean HitMine { get; set; }
         public List<Point> MineCoordinates { get; set; }
         public int BoardRows { get; set; }
         public int BoardColumns { get; set; }
         public int NumberOfMines { get; set; }
         public Cell[,] Board { get; set; }
+        public int RemainingCells { get; set; }
 
         public GameBoard(string difficulty)
         {
             GenerateBoard(difficulty);
+            RemainingCells = (BoardRows * BoardColumns) - NumberOfMines;
             MineCoordinates = new List<Point>();
             PlaceMines();
         }
@@ -88,7 +91,6 @@ namespace GroupDMinefieldMidterm
 
         private List<Point> GetSurroundingCells(int row, int column)
         {
-
             List<Point> surroundingCells = new List<Point> {
             new Point(row - 1, column - 1),
             new Point(row - 1, column),
@@ -128,6 +130,7 @@ namespace GroupDMinefieldMidterm
                 {
                     case GameValues.Empty:
                         Board[point.X, point.Y].Revealed = true;
+                        RemainingCells --;
                         List<Point> surroundingCells = GetSurroundingCells(point.X, point.Y);
                         foreach (Point cell in surroundingCells)
                         {
@@ -135,11 +138,12 @@ namespace GroupDMinefieldMidterm
                         }
                         break;
                     case GameValues.Mine:
+                        HitMine = true;
                         RevealMines();
-                        //End game
                         break;
                     default:
                         Board[point.X, point.Y].Revealed = true;
+                        RemainingCells --;
                         break;
                 }
             }

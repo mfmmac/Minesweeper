@@ -8,11 +8,13 @@ namespace GroupDMinefieldMidterm
     public class Minesweeper
     {
         public Boolean GameOver { get; set; }
+        public Boolean GameWon { get; set; }
         public GameBoard Game { get; set; }
 
         public Minesweeper()
         {
             GameOver = false;
+            GameWon = false;
             string userDifficulty = GetUserDifficulty();
             Game = new GameBoard(userDifficulty);
             Display.DisplayBoard(Game);
@@ -53,6 +55,14 @@ namespace GroupDMinefieldMidterm
             var rowInput = GetUserRow();
             Point point = new Point(rowInput, columnInput);
             Game.CheckCell(point);
+            if (Game.HitMine)
+            {
+                GameOver = true;
+            }
+            else if (Game.RemainingCells <= 0)
+            {
+                GameWon = true;
+            }
             Display.DisplayBoard(Game);
         }
 
@@ -85,9 +95,7 @@ namespace GroupDMinefieldMidterm
                 Console.WriteLine("Invalid entry. Please enter a valid row");
                 userInput = Char.ToUpper(Console.ReadKey().KeyChar);
             }
-
             return (int)(userInput - 65);
         }
-  
     }
 }
