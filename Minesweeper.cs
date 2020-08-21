@@ -10,6 +10,14 @@ namespace GroupDMinefieldMidterm
         public Boolean GameOver { get; set; }
         public GameBoard Game { get; set; }
 
+        public Minesweeper()
+        {
+            GameOver = false;
+            string userDifficulty = GetUserDifficulty();
+            Game = new GameBoard(userDifficulty);
+            Display.DisplayBoard(Game);
+        }
+
         public string GetUserDifficulty()
         {
             Console.WriteLine("Would you like to play a game?");
@@ -39,18 +47,18 @@ namespace GroupDMinefieldMidterm
             return "";
         }
 
-        public List<Point> GetUserSelection()
+        public void GetUserSelection()
         {
-            Console.WriteLine("Please enter cell to check: ");
-            Console.WriteLine("00, A for example.");
-
-            string userInput = Console.ReadLine();
-
+            var columnInput = GetUserColumn();
+            var rowInput = GetUserRow();
+            Point point = new Point(rowInput, columnInput);
+            Game.CheckCell(point);
+            Display.DisplayBoard(Game);
         }
 
         private int GetUserColumn()
         {
-            Console.WriteLine("Please enter column");
+            Console.WriteLine("\nPlease enter column");
             string userInput = Console.ReadLine();
 
             bool parsed = int.TryParse(userInput, out int userColumn);
@@ -78,8 +86,8 @@ namespace GroupDMinefieldMidterm
                 userInput = Char.ToUpper(Console.ReadKey().KeyChar);
             }
 
-            return (int)userInput;
+            return (int)(userInput - 65);
         }
-
+  
     }
 }

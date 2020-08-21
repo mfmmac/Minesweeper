@@ -4,9 +4,9 @@ using System.Text;
 
 namespace GroupDMinefieldMidterm
 {
-    public class Display
+    public static class Display
     {
-        public void DisplayBoard(GameBoard gameBoard)
+        public static void DisplayBoard(GameBoard gameBoard)
         {
             Console.WriteLine();
             Console.Write("  ");
@@ -50,7 +50,7 @@ namespace GroupDMinefieldMidterm
             }
         }
 
-        public void GameEndScreen(Boolean winOrLose)
+        public static void GameEndScreen(Boolean winOrLose)
         {
             string gameEndMessage;
 
