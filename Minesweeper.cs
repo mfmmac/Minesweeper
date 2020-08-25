@@ -58,6 +58,7 @@ namespace GroupDMinefieldMidterm
             if (Game.HitMine)
             {
                 GameOver = true;
+                Display.DisplayBoard(Game);
             }
             else if (Game.RemainingCells <= 0)
             {
@@ -65,6 +66,7 @@ namespace GroupDMinefieldMidterm
             }
             Display.DisplayBoard(Game);
         }
+                
 
         private int GetUserColumn()
         {

@@ -11,8 +11,8 @@ namespace GroupDMinefieldMidterm
 
             while(!minesweeper.GameOver)
             {
-                minesweeper.GetUserSelection();
-            }
+                minesweeper.GetUserSelection();              
+            }           
         }
     }
 }

@@ -21,23 +21,27 @@ namespace GroupDMinefieldMidterm
                 Console.WriteLine();
                 Console.Write($"{label}");
 
+                StringBuilder cellOutput = new StringBuilder("");
+
                 for (int j = 0; j < gameBoard.BoardColumns; j++)
                 {
+                    cellOutput.Clear();
+
                     if (gameBoard.Board[i, j].Revealed)
                     {
                         GameValues cellValue = gameBoard.Board[i, j].CellValue;
-                        String cellOutput;
+                        
 
                         switch (cellValue)
                         {
                             case GameValues.Empty:
-                                cellOutput = "   ";
+                                cellOutput.Append("   ");
                                 break;
                             case GameValues.Mine:
-                                cellOutput = " M ";
+                                cellOutput.Append(" M ");
                                 break;
                             default:
-                                cellOutput = $" {(int)cellValue} ";
+                                cellOutput.Append($" {(int)cellValue} ");                                
                                 break;
                         }
                         Console.Write(cellOutput);
