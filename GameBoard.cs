@@ -64,8 +64,15 @@ namespace GroupDMinefieldMidterm
             var random = new Random();
             for (int i = 0; i < NumberOfMines; i++)
             {
-                var row = random.Next(0, BoardRows);
-                var column = random.Next(0, BoardColumns);
+                int row;
+                int column;
+                do
+                {
+                    row = random.Next(0, BoardRows);
+                    column = random.Next(0, BoardColumns);
+
+                } while (Board[row, column].CellValue == GameValues.Mine);
+               
                 Board[row, column].CellValue = GameValues.Mine;               
                 PlaceNumber(row, column);
                 MineCoordinates.Add(new Point(row, column));
