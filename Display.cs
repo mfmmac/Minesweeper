@@ -9,6 +9,7 @@ namespace GroupDMinefieldMidterm
         public static void DisplayBoard(GameBoard gameBoard)
         {
             Console.WriteLine();
+            int sum = 0;
             Console.Write("  ");
             for (int i = 0; i < gameBoard.BoardColumns; i++)
             {
@@ -39,6 +40,7 @@ namespace GroupDMinefieldMidterm
                                 break;
                             case GameValues.Mine:
                                 cellOutput.Append(" M ");
+                                sum++;
                                 break;
                             default:
                                 cellOutput.Append($" {(int)cellValue} ");                                
@@ -52,6 +54,7 @@ namespace GroupDMinefieldMidterm
                     }
                 }
             }
+            Console.WriteLine($"Mine: {sum}");
         }
 
         public static void GameEndScreen(Boolean winOrLose)
