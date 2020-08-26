@@ -94,7 +94,7 @@ namespace GroupDMinefieldMidterm
 
             while ((userInput < 'A') || userInput > (char)upperBound)
             {
-                Console.WriteLine("Invalid entry. Please enter a valid row");
+                Console.WriteLine("\nInvalid entry. Please enter a valid row");
                 userInput = Char.ToUpper(Console.ReadKey().KeyChar);
             }
             return (int)(userInput - 65);
