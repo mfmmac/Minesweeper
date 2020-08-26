@@ -9,10 +9,16 @@ namespace GroupDMinefieldMidterm
         {
             Minesweeper minesweeper = new Minesweeper();
 
-            while(!minesweeper.GameOver)
+            while(!minesweeper.GameOver && !minesweeper.GameWon)
             {
                 minesweeper.GetUserSelection();              
-            }           
+            }
+
+            if (minesweeper.GameWon)
+            {
+                Display.GameEndScreen(true);
+            }
+            else Display.GameEndScreen(false);
         }
     }
 }
