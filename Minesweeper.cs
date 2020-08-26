@@ -28,7 +28,7 @@ namespace GroupDMinefieldMidterm
 
             bool parsed = int.TryParse(userInput, out int userDifficulty);
 
-            while (!parsed)
+            while (!parsed || (userDifficulty < 1) || (userDifficulty > 3))
             {
                 Console.WriteLine("Invalid entry. Please enter 1, 2, or 3.");
                 userInput = Console.ReadLine();
