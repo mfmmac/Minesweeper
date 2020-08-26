@@ -77,7 +77,7 @@ namespace GroupDMinefieldMidterm
 
             while (!parsed || userColumn < 0 || userColumn > (Game.BoardColumns - 1))
             {
-                Console.WriteLine("Invalid entry. ");
+                Console.WriteLine("\nInvalid entry. Please enter a valid column.");
                 userInput = Console.ReadLine();
                 parsed = int.TryParse(userInput, out userColumn);
             }
@@ -87,10 +87,10 @@ namespace GroupDMinefieldMidterm
 
         private int GetUserRow()
         {
-            Console.WriteLine("Please enter row");
+            Console.WriteLine("\nPlease enter row");
             char userInput = Char.ToUpper(Console.ReadKey().KeyChar);
 
-            var upperBound = Game.BoardRows + 65;
+            var upperBound = Game.BoardRows + 64;
 
             while ((userInput < 'A') || userInput > (char)upperBound)
             {
