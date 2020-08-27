@@ -16,6 +16,7 @@ namespace GroupDMinefieldMidterm
                 char label = (char)(i + 65);
                 Console.WriteLine();
                 Console.Write($"{label}");
+                Console.Write("|");
 
                 StringBuilder cellOutput = new StringBuilder("");
 
@@ -45,8 +46,15 @@ namespace GroupDMinefieldMidterm
                     else
                     {
                         Console.Write(" - ");
-                    }
+                    }                    
                 }
+                Console.Write("|");
+            }
+            Console.WriteLine();
+            Console.Write("  ");
+            for (int i = 0; i < gameBoard.BoardColumns; i++)
+            {
+                Console.Write("---");
             }
         }
 
@@ -57,6 +65,12 @@ namespace GroupDMinefieldMidterm
             for (int i = 0; i < columns; i++)
             {
                 Console.Write($"{i:00} ");
+            }
+            Console.WriteLine();
+            Console.Write("  ");
+            for (int i = 0; i < columns; i++)
+            {
+                Console.Write("---");
             }
         }
 

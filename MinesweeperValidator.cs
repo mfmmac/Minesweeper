@@ -27,7 +27,5 @@ namespace GroupDMinefieldMidterm
 
             return userInput;
         }
-
-
     }
 }

@@ -80,7 +80,7 @@ namespace GroupDMinefieldMidterm
                
                 Board[row, column].CellValue = GameValues.Mine;               
                 PlaceNumber(row, column);
-                MineCoordinates.Add(new Point(row, column));
+                MineCoordinates.Add(new Point(row, column));                
              }
         }
 
