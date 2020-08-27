@@ -88,14 +88,12 @@ namespace GroupDMinefieldMidterm
             var upperBound = Game.BoardRows + 64;
             Console.WriteLine("\nPlease enter row");
             string userInput = Console.ReadLine().ToUpper();
-            char userRow = userInput[0];
-            
+            char userRow;            
 
-            while ((userInput.Length > 1) || (userRow < 'A') || userRow > (char)upperBound)
+            while ((!Char.TryParse(userInput, out userRow)) || (userRow < 'A') || userRow > (char)upperBound)
             {
                 Console.WriteLine("\nInvalid entry. Please enter a valid row");
-                userInput = Console.ReadLine().ToUpper();
-                userRow = userInput[0];
+                userInput = Console.ReadLine().ToUpper();                
             }
 
             return (int)(userRow - 65);
