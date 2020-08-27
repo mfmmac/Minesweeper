@@ -8,13 +8,8 @@ namespace GroupDMinefieldMidterm
     {
         public static void DisplayBoard(GameBoard gameBoard)
         {
-            Console.WriteLine($"\nRemaining cells: {gameBoard.RemainingCells}");
-            Console.WriteLine();
-            Console.Write("  ");
-            for (int i = 0; i < gameBoard.BoardColumns; i++)
-            {
-                Console.Write($"{i:00} ");
-            }
+            DisplayScore(gameBoard.RemainingCells);
+            DisplayColumns(gameBoard.BoardColumns);
 
             for (int i = 0; i < gameBoard.BoardRows; i++)
             {
@@ -31,7 +26,7 @@ namespace GroupDMinefieldMidterm
                     if (gameBoard.Board[i, j].Revealed)
                     {
                         GameValues cellValue = gameBoard.Board[i, j].CellValue;
-                        
+
 
                         switch (cellValue)
                         {
@@ -42,7 +37,7 @@ namespace GroupDMinefieldMidterm
                                 cellOutput.Append(" M ");
                                 break;
                             default:
-                                cellOutput.Append($" {(int)cellValue} ");                                
+                                cellOutput.Append($" {(int)cellValue} ");
                                 break;
                         }
                         Console.Write(cellOutput);
@@ -55,7 +50,24 @@ namespace GroupDMinefieldMidterm
             }
         }
 
-        public static void GameEndScreen(Boolean winOrLose)
+        private static void DisplayColumns(int columns)
+        {
+            Console.WriteLine();
+            Console.Write("  ");
+            for (int i = 0; i < columns; i++)
+            {
+                Console.Write($"{i:00} ");
+            }
+        }
+
+        private static void DisplayScore(int score)
+        {
+            Console.WriteLine("\n -------------------------------");
+            Console.WriteLine($"|\tRemaining cells: {score}\t|");
+            Console.WriteLine(" -------------------------------");
+        }
+
+        public static void GameEndScreen(bool winOrLose)
         {
             string gameEndMessage;
 
@@ -68,7 +80,7 @@ namespace GroupDMinefieldMidterm
                 gameEndMessage = "Try better next time. You've lost the game!!!!";
             }
 
-            Console.WriteLine("\n----------------------------------------------");
+            Console.WriteLine("\n\n----------------------------------------------");
             Console.WriteLine(gameEndMessage);
             Console.WriteLine("----------------------------------------------");
         }

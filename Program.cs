@@ -7,18 +7,31 @@ namespace GroupDMinefieldMidterm
     {
         static void Main(string[] args)
         {
-            Minesweeper minesweeper = new Minesweeper();
+            bool userContinue = true;
 
-            while(!minesweeper.GameOver && !minesweeper.GameWon)
-            {
-                minesweeper.GetUserSelection();              
-            }
+            Console.WriteLine("Welcome to Group D's Minesweeper game!");
 
-            if (minesweeper.GameWon)
+            while (userContinue)
             {
-                Display.GameEndScreen(true);
+                Minesweeper minesweeper = new Minesweeper();
+
+                while (!minesweeper.GameOver && !minesweeper.GameWon)
+                {
+                    minesweeper.GetUserSelection();
+                }
+
+                if (minesweeper.GameWon)
+                {
+                    Display.GameEndScreen(true);
+                }
+                else Display.GameEndScreen(false);
+
+                string userInput = MinesweeperValidator.ValidateContinue();
+
+                if (userInput.Equals("NO") || userInput.Equals("N"))
+                    userContinue = false;
+                
             }
-            else Display.GameEndScreen(false);
         }
     }
 }

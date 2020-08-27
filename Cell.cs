@@ -7,6 +7,6 @@ namespace GroupDMinefieldMidterm
     public class Cell
     {
         public GameValues CellValue { get; set; }
-        public Boolean Revealed { get; set; }
+        public bool Revealed { get; set; }
     }
 }

@@ -7,22 +7,21 @@ namespace GroupDMinefieldMidterm
 {
     public class Minesweeper
     {
-        public Boolean GameOver { get; set; }
-        public Boolean GameWon { get; set; }
+        public bool GameOver { get; set; }
+        public bool GameWon { get; set; }
         public GameBoard Game { get; set; }
 
         public Minesweeper()
         {
             GameOver = false;
-            GameWon = false;
-            string userDifficulty = GetUserDifficulty();
-            Game = new GameBoard(userDifficulty);
+            GameWon = false;            
+            Game = new GameBoard(GetUserDifficulty());
             Display.DisplayBoard(Game);
         }
 
         public string GetUserDifficulty()
         {
-            Console.WriteLine("Would you like to play a game?");
+            Console.WriteLine("\nWould you like to play a game?");
             Console.WriteLine("Select your difficulty - 1: Beginner 2: Intermediate 3: Expert");
             string userInput = Console.ReadLine();
 
@@ -57,8 +56,7 @@ namespace GroupDMinefieldMidterm
             Game.CheckCell(point);
             if (Game.HitMine)
             {
-                GameOver = true;
-                Display.DisplayBoard(Game);
+                GameOver = true;               
             }
             else if (Game.RemainingCells <= 0)
             {
@@ -84,20 +82,23 @@ namespace GroupDMinefieldMidterm
 
             return userColumn ;
         }
-
+        
         private int GetUserRow()
         {
-            Console.WriteLine("\nPlease enter row");
-            char userInput = Char.ToUpper(Console.ReadKey().KeyChar);
-
             var upperBound = Game.BoardRows + 64;
+            Console.WriteLine("\nPlease enter row");
+            string userInput = Console.ReadLine().ToUpper();
+            char userRow = userInput[0];
+            
 
-            while ((userInput < 'A') || userInput > (char)upperBound)
+            while ((userInput.Length > 1) || (userRow < 'A') || userRow > (char)upperBound)
             {
                 Console.WriteLine("\nInvalid entry. Please enter a valid row");
-                userInput = Char.ToUpper(Console.ReadKey().KeyChar);
+                userInput = Console.ReadLine().ToUpper();
+                userRow = userInput[0];
             }
-            return (int)(userInput - 65);
+
+            return (int)(userRow - 65);
         }
     }
 }

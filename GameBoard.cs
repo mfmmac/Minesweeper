@@ -9,7 +9,7 @@ namespace GroupDMinefieldMidterm
 {
     public class GameBoard
     {
-        public Boolean HitMine { get; set; }
+        public bool HitMine { get; set; }
         public List<Point> MineCoordinates { get; set; }
         public int BoardRows { get; set; }
         public int BoardColumns { get; set; }
@@ -25,6 +25,22 @@ namespace GroupDMinefieldMidterm
             PlaceMines();
         }
         private void GenerateBoard(string difficulty)
+        {
+            InitializeBoardValues(difficulty);
+
+            Board = new Cell[BoardRows, BoardColumns];
+            for (int i = 0; i < BoardRows; i++)
+            {
+                for (int j = 0; j < BoardColumns; j++)
+                {
+                    var boardCell = new Cell();
+                    Board[i, j] = boardCell;
+                    Board[i, j].CellValue = GameValues.Empty;
+                }
+            }
+        }
+
+        private void InitializeBoardValues(string difficulty)
         {
             switch (difficulty)
             {
@@ -45,17 +61,6 @@ namespace GroupDMinefieldMidterm
                     break;
                 default:
                     break;
-            }
-
-            Board = new Cell[BoardRows, BoardColumns];
-            for (int i = 0; i < BoardRows; i++)
-            {
-                for (int j = 0; j < BoardColumns; j++)
-                {
-                    var boardCell = new Cell();
-                    Board[i, j] = boardCell;
-                    Board[i, j].CellValue = GameValues.Empty;                    
-                }
             }
         }
 
@@ -82,7 +87,7 @@ namespace GroupDMinefieldMidterm
         private void PlaceNumber(int row, int column)
         {
 
-            var surroundingCells = GetSurroundingCells(row, column);
+            List<Point> surroundingCells = GetSurroundingCells(row, column);
 
             foreach (Point point in surroundingCells)
             {
