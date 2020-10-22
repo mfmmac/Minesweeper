@@ -24,7 +24,6 @@ namespace GroupDMinefieldMidterm
                 Console.WriteLine("Invalid entry. Please try again");
                 userInput = Console.ReadLine().ToUpper();
             }
-
             return userInput;
         }
     }

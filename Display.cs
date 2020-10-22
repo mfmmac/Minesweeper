@@ -28,7 +28,6 @@ namespace GroupDMinefieldMidterm
                     {
                         GameValues cellValue = gameBoard.Board[i, j].CellValue;
 
-
                         switch (cellValue)
                         {
                             case GameValues.Empty:
@@ -46,7 +45,7 @@ namespace GroupDMinefieldMidterm
                     else
                     {
                         Console.Write(" - ");
-                    }                    
+                    }
                 }
                 Console.Write("|");
             }

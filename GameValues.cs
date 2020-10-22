@@ -6,7 +6,7 @@ using System.Text;
 namespace GroupDMinefieldMidterm
 {
     public enum GameValues
-    {        
+    {
         Empty,
         One,
         Two,
@@ -15,7 +15,7 @@ namespace GroupDMinefieldMidterm
         Five,
         Six,
         Seven,
-        Eight,        
+        Eight,
         Mine,
     }
 }

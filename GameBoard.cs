@@ -77,16 +77,15 @@ namespace GroupDMinefieldMidterm
                     column = random.Next(0, BoardColumns);
 
                 } while (Board[row, column].CellValue == GameValues.Mine);
-               
-                Board[row, column].CellValue = GameValues.Mine;               
+
+                Board[row, column].CellValue = GameValues.Mine;
                 PlaceNumber(row, column);
-                MineCoordinates.Add(new Point(row, column));                
-             }
+                MineCoordinates.Add(new Point(row, column));
+            }
         }
 
         private void PlaceNumber(int row, int column)
         {
-
             List<Point> surroundingCells = GetSurroundingCells(row, column);
 
             foreach (Point point in surroundingCells)
@@ -121,7 +120,6 @@ namespace GroupDMinefieldMidterm
                     surroundingCells.Remove(point);
                 }
             }
-
             return surroundingCells;
         }
 
@@ -142,7 +140,7 @@ namespace GroupDMinefieldMidterm
                 {
                     case GameValues.Empty:
                         Board[point.X, point.Y].Revealed = true;
-                        RemainingCells --;
+                        RemainingCells--;
                         List<Point> surroundingCells = GetSurroundingCells(point.X, point.Y);
                         foreach (Point cell in surroundingCells)
                         {
@@ -155,7 +153,7 @@ namespace GroupDMinefieldMidterm
                         break;
                     default:
                         Board[point.X, point.Y].Revealed = true;
-                        RemainingCells --;
+                        RemainingCells--;
                         break;
                 }
             }
